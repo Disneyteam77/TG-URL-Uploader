@@ -42,11 +42,11 @@ async def echo(bot, update):
     if update_channel:
         try:
             await bot.get_chat_member(update_channel, update.chat.id)
-        except UserNotParticipant:
-            await update.reply_text(f"Join @{update_channel} To Use Me")
-            return
         except UserBannedInChannel:
             await update.reply_text("You are B A N N E D")
+            return
+        except UserNotParticipant:
+            await update.reply_text(f"Join @{update_channel} To Use Me")
             return
         except Exception:
             await update.reply_text("Something Wrong. Contact my Support Group")
