@@ -34,22 +34,23 @@ from pyrogram.errors import UserNotParticipant, UserBannedInChannel
 
 @pyrogram.Client.on_message(pyrogram.Filters.regex(pattern=".*http.*"))
 async def echo(bot, update):
+    if update.from_user.id in Config.BANNED_USERS:
+        await update.reply_text("You are B A N N E D")
+        return
+    TRChatBase(update.from_user.id, update.text, "/echo")
+    logger.info(update.from_user)
     update_channel = Config.UPDATE_CHANNEL
     if update_channel:
         try:
-            chat = await bot.get_chat_member(update_channel, update.chat.id)
+            await bot.get_chat_member(update_channel, update.chat.id)
         except UserNotParticipant:
             await update.reply_text(f"Join {update_channel} To Use Me")
         except UserBannedInChannel:
             await update.reply_text("You are B A N N E D")
         except Exception:
             await update.reply_text("Something Wrong. Contact my Support Group")
-            return
-    if update.from_user.id in Config.BANNED_USERS:
-        await update.reply_text("You are B A N N E D")
-        return
-    TRChatBase(update.from_user.id, update.text, "/echo")
-    logger.info(update.from_user)
+        #except:
+            return False
     url = update.text
     youtube_dl_username = None
     youtube_dl_password = None
