@@ -48,7 +48,7 @@ async def echo(bot, update):
             await update.reply_text("You are B A N N E D")
         except Exception:
             await update.reply_text("Something Wrong. Contact my Support Group")
-    return
+            return
     else():
         return
     logger.info(update.from_user)
