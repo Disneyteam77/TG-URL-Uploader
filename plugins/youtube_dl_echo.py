@@ -41,10 +41,10 @@ async def echo(bot, update):
     update_channel = Config.UPDATE_CHANNEL
     if update_channel:
         try:
-            await bot.get_chat_member(update_channel, update.chat.id)
-        except UserBannedInChannel:
-            await update.reply_text("You are B A N N E D")
-            return
+            user = await bot.get_chat_member(update_channel, update.chat.id)
+            if user.status == "kicked":
+               await update.reply_text("You are B A N N E D in channel")
+               return
         except UserNotParticipant:
             await update.reply_text(f"Join @{update_channel} To Use Me")
             return
