@@ -30,18 +30,25 @@ from helper_funcs.chat_base import TRChatBase
 from helper_funcs.display_progress import humanbytes
 from helper_funcs.help_uploadbot import DownLoadFile
 
+from pyrogram.errors import UserNotParticipant, UserBannedInChannel
 
 @pyrogram.Client.on_message(pyrogram.Filters.regex(pattern=".*http.*"))
 async def echo(bot, update):
     if update.from_user.id in Config.BANNED_USERS:
         await update.reply_text("You are B A N N E D")
         return
-    # logger.info(update)
     TRChatBase(update.from_user.id, update.text, "/echo")
-    # await bot.send_chat_action(
-    #     chat_id=update.chat.id,
-    #     action="typing"
-    # )
+    update_channel = Config.UPDATE_CHANNEL
+    if update_channel:
+        try:
+            chat = await bot.get_chat_member(update_channel, update.chat.id)
+        except UserNotParticipant:
+            await update.reply_text(f"Join {update_channel} To Use Me")
+        except UserBannedInChannel:
+            await update.reply_text("You are B A N N E D")
+        except Exception:
+            await update.reply_text("Something Wrong. Contact my Support Group")
+            return
     logger.info(update.from_user)
     url = update.text
     youtube_dl_username = None
