@@ -49,6 +49,8 @@ async def echo(bot, update):
         except Exception:
             await update.reply_text("Something Wrong. Contact my Support Group")
     return
+    else():
+        return
     logger.info(update.from_user)
     url = update.text
     youtube_dl_username = None
