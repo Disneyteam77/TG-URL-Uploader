@@ -30,6 +30,7 @@ from helper_funcs.chat_base import TRChatBase
 from helper_funcs.display_progress import humanbytes
 from helper_funcs.help_uploadbot import DownLoadFile
 
+from pyrogram import ReplyKeyboardMarkup, InlineKeyboardMarkup, InlineKeyboardButton
 from pyrogram.errors import UserNotParticipant, UserBannedInChannel
 
 @pyrogram.Client.on_message(pyrogram.Filters.regex(pattern=".*http.*"))
@@ -46,7 +47,13 @@ async def echo(bot, update):
                await update.reply_text("You are B A N N E D in channel")
                return
         except UserNotParticipant:
-            await update.reply_text(f"Join @{update_channel} To Use Me")
+            #await update.reply_text(f"Join @{update_channel} To Use Me")
+            await update.reply_text(
+                text="Join My Updates Channel to use ME 😎,
+                reply_markup=InlineKeyboardMarkup([
+                    [ InlineKeyboardButton(text="Join My Update Channel", url=f"https://t.me/{update_channel")]
+              ])
+            )
             return
         except Exception:
             await update.reply_text("Something Wrong. Contact my Support Group")
