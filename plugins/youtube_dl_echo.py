@@ -49,7 +49,7 @@ async def echo(bot, update):
         except UserNotParticipant:
             #await update.reply_text(f"Join @{update_channel} To Use Me")
             await update.reply_text(
-                text="Join My Updates Channel to use ME 😎,
+                text="Join My Updates Channel to use ME 😎",
                 reply_markup=InlineKeyboardMarkup([
                     [ InlineKeyboardButton(text="Join My Update Channel", url=f"https://t.me/{update_channel")]
               ])
