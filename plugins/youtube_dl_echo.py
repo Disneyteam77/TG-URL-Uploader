@@ -23,7 +23,7 @@ else:
 # the Strings used for this "thing"
 from translation import Translation
 
-
+from PIL import Image
 
 import pyrogram
 logging.getLogger("pyrogram").setLevel(logging.WARNING)
@@ -276,7 +276,7 @@ async def echo(bot, update):
                 thumbnail = response_json["thumbnail"]
                 thumbnail_image = response_json["thumbnail"]
                 logger.info(f"Thumbnail :{thumbnail_image}")
-        thumb_image_path = DownLoadFile(
+        thumb_image_path_new = DownLoadFile(
             thumbnail_image,
             Config.DOWNLOAD_LOCATION + "/" +
             str(update.from_user.id) + ".webp",
@@ -286,7 +286,10 @@ async def echo(bot, update):
             update.message_id,
             update.chat.id
         )
-        logger.info(f"Thumbnail22:{thumb_image_path}")
+        logger.info(f"Thumbnail22:{thumb_image_path_new}")
+        im = Image.open("thumb_image_path_new.webp").convert("RGB")
+        thumb_image_path = im.save("test.jpg", "jpeg")
+        logger.info(f"Thumbnail New JPG:{thumb_image_path}")
         await bot.send_message(
             chat_id=update.chat.id,
             text=Translation.FORMAT_SELECTION.format(thumbnail) + "\n" + Translation.SET_CUSTOM_USERNAME_PASSWORD,
