@@ -223,7 +223,7 @@ async def youtube_dl_call_back(bot, update):
             if os.path.exists(thumb_image_path):
                 width = 0
                 height = 0
-                if thumb_image_path.endswith("webp")
+                if thumb_image_path.endswith("webp"):
                     Image.open(thumb_image_path).convert(
                         "RGB").save(thumb_image_path)
                     img = Image.open(thumb_image_path)
