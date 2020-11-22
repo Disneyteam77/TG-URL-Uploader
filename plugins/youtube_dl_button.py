@@ -221,6 +221,7 @@ async def youtube_dl_call_back(bot, update):
                         duration = metadata.get('duration').seconds
             # get the correct width, height, and duration for videos greater than 10MB
             if os.path.exists(thumb_image_path):
+                logger.info(f"Thumbtest : {thumb_image_path}")
                 width = 0
                 height = 0
                 if thumb_image_path.endswith("webp"):
