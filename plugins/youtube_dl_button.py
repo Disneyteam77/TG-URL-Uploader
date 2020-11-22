@@ -224,10 +224,10 @@ async def youtube_dl_call_back(bot, update):
                 logger.info(f"Thumbtest : {thumb_image_path}")
                 width = 0
                 height = 0
-                if thumb_image_path.endswith("webp"):
-                    Image.open(thumb_image_path).convert(
-                        "RGB").save(thumb_image_path)
-                    img = Image.open(thumb_image_path)
+                #if thumb_image_path.endswith("webp"):
+                   # Image.open(thumb_image_path).convert(
+                     #   "RGB").save(thumb_image_path)
+                  #  img = Image.open(thumb_image_path)
                 metadata = extractMetadata(createParser(thumb_image_path))
                 if metadata.has("width"):
                     width = metadata.get("width")
