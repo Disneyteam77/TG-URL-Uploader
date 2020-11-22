@@ -23,6 +23,8 @@ else:
 # the Strings used for this "thing"
 from translation import Translation
 
+
+
 import pyrogram
 logging.getLogger("pyrogram").setLevel(logging.WARNING)
 
@@ -284,6 +286,7 @@ async def echo(bot, update):
             update.message_id,
             update.chat.id
         )
+        logger.info(f"Thumbnail22:{thumb_image_path}")
         await bot.send_message(
             chat_id=update.chat.id,
             text=Translation.FORMAT_SELECTION.format(thumbnail) + "\n" + Translation.SET_CUSTOM_USERNAME_PASSWORD,
