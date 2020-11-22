@@ -273,6 +273,7 @@ async def echo(bot, update):
             if response_json["thumbnail"] is not None:
                 thumbnail = response_json["thumbnail"]
                 thumbnail_image = response_json["thumbnail"]
+                logger.info(f"Thumbnail :{thumbnail_image})
         thumb_image_path = DownLoadFile(
             thumbnail_image,
             Config.DOWNLOAD_LOCATION + "/" +
