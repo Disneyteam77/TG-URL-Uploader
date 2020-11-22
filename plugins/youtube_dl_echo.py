@@ -287,9 +287,12 @@ async def echo(bot, update):
             update.chat.id
         )
         logger.info(f"Thumbnail22:{thumb_image_path}")
-        im = Image.open(thumb_image_path).convert("RGB")
-        im.save(thumb_image_path.replace(".webp", ".jpg"), "jpeg")
-        logger.info(f"Thumbnail New JPG:{thumb_image_path}")
+        if os.path.exists(thumb_image_path):
+            im = Image.open(thumb_image_path).convert("RGB")
+            im.save(thumb_image_path.replace(".webp", ".jpg"), "jpeg")
+            logger.info(f"Thumbnail New JPG:{thumb_image_path}")
+        else:
+            thumb_image_path = None
         await bot.send_message(
             chat_id=update.chat.id,
             text=Translation.FORMAT_SELECTION.format(thumbnail) + "\n" + Translation.SET_CUSTOM_USERNAME_PASSWORD,
