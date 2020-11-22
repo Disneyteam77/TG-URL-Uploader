@@ -277,14 +277,13 @@ async def echo(bot, update):
         thumb_image_path = DownLoadFile(
             thumbnail_image,
             Config.DOWNLOAD_LOCATION + "/" +
-            str(update.from_user.id) + ".jpg",
+            str(update.from_user.id) + ".webp",
             Config.CHUNK_SIZE,
             None,  # bot,
             Translation.DOWNLOAD_START,
             update.message_id,
             update.chat.id
         )
-        logger.info(f"Thumbnail22 :{thumb_image_path)
         await bot.send_message(
             chat_id=update.chat.id,
             text=Translation.FORMAT_SELECTION.format(thumbnail) + "\n" + Translation.SET_CUSTOM_USERNAME_PASSWORD,
