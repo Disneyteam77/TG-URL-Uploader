@@ -288,7 +288,7 @@ async def echo(bot, update):
         )
         logger.info(f"Thumbnail22:{thumb_image_path_new}")
         im = Image.open(thumb_image_path_new).convert("RGB")
-        thumb_image_path = im.save("test.jpg", "jpeg")
+        thumb_image_path = im.save(f"{thumb_image_path_new}.jpg", "jpeg")
         logger.info(f"Thumbnail New JPG:{thumb_image_path}")
         await bot.send_message(
             chat_id=update.chat.id,
