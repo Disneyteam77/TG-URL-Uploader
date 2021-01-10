@@ -239,11 +239,11 @@ async def echo(bot, update):
             cb_string_video = "{}|{}|{}".format(
                 "video", format_id, format_ext)
             inline_keyboard.append([
-                pyrogram.InlineKeyboardButton(
+                InlineKeyboardButton(
                     "SVideo",
                     callback_data=(cb_string_video).encode("UTF-8")
                 ),
-                pyrogram.InlineKeyboardButton(
+                InlineKeyboardButton(
                     "DFile",
                     callback_data=(cb_string_file).encode("UTF-8")
                 )
