@@ -9,3 +9,5 @@ requests
 tgcrypto
 youtube-dl
 olefile
+sqlalchemy
+psycopg2-binary
